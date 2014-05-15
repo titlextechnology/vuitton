@@ -1,0 +1,179 @@
+<html>
+<head>
+  <title>Static page</title>
+
+  <!-- METAS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <!-- STYLES -->
+  <link href="http://fnt.webink.com/wfs/webink.css?project=D727BB9B-72B7-4A17-955A-9C785A3534BE&fonts=AB792099-C77B-C51B-0B00-1156FDD0A0C1:family=LouisVuitton-N-Demi,185FA3C0-0D32-22FA-1407-6E8579FD7FC1:family=LouisVuitton-N,6D1EA205-0E85-4FA5-BB46-A579BD2AEE5F:family=LouisVuitton-N-Light" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="css/jquery-ui.css" type="text/css"/>
+  <link rel="stylesheet" href="css/main.css" type="text/css"/>
+  
+  <!-- JS -->
+  <script src="js/jquery-2.0.3.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+</head>
+<body>
+  <!-- Our animation will be injected here -->
+  <div id="app">
+  	<!-- Animation -->
+  	<div id="leather-animation">
+      <div class="swing">
+      <div class="raft"></div>
+      </div>
+      <div class="filterMenu">
+        <div class="leftPart lightBg left">
+          <span class="blue">
+            LE PORTEFEUILLE IDEAL 
+            SELON VOS BESOINS
+          </span>
+        </div>
+        <div class="filter1 filterCont">
+          <div class="filter">
+            <h3>RANGEMENT CARTES</h3>
+            <div class="clearfix"></div>
+            <div class="slider" id="filter1" data-begin="0" data-end="3"></div>
+            <div class="legend">
+              <input type="radio" class="filter_radio" name="[filter1]" value="0" id="card3"/>
+              <input type="radio" class="filter_radio" name="[filter1]" value="1" id="card5"/>
+              <input type="radio" class="filter_radio" name="[filter1]" value="2" id="card8"/>
+              <input type="radio" class="filter_radio" name="[filter1]" value="3" id="card12"/>
+              <label class="l1" for="card3">3 cards</label>
+              <label class="l2" for="card5">5 cards</label>
+              <label class="l3" for="card8">8 cards</label>
+              <label class="l4" for="card12">12 cards</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter2 filterCont small">
+          <div class="filter">
+            <h3>monnaie</h3>
+            <div class="clearfix"></div>
+            <div class="slider" id="filter2" data-begin="0" data-end="1"></div>
+            <div class="legend">
+              <input type="radio" class="filter_radio" name="[filter2]" value="0" id="oui"/>
+              <input type="radio" class="filter_radio" name="[filter2]" value="1" id="non"/>
+              <label class="left l5" for="oui">OUI</label>
+              <label class="right l6" for="non">non</label>
+            </div>
+          </div>
+        </div>
+        <div class="filter3 filterCont small">
+          <div class="filter">
+            <h3>PASSEPORT</h3>
+            <div class="clearfix"></div>
+            <div class="slider" id="filter3" data-begin="0" data-end="1"></div>
+            <div class="legend">
+              <input type="radio" class="filter_radio" name="[filter3]" value="0" id="oui1"/>
+              <input type="radio" class="filter_radio" name="[filter3]" value="1" id="non1"/>
+              <label class="left l7" for="oui1">OUI</label>
+              <label class="right l8" for="non1">non</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter4 filterCont">
+          <div class="filter">
+            <h3>UTILISATION</h3>
+            <div class="clearfix"></div>
+            <div class="slider" id="filter4" data-begin="0" data-end="2"></div>
+            <div class="legend">
+              <input type="radio" class="filter_radio" name="[filter4]" value="0" id="pocket"/>
+              <input type="radio" class="filter_radio" name="[filter4]" value="1" id="jacket"/>
+              <input type="radio" class="filter_radio" name="[filter4]" value="2" id="bag"/>
+              <label class="l9" for="pocket">IN THE POCKET</label>
+              <label class="l10" for="jacket">IN THE JACKET</label>
+              <label class="l11" for="bag">IN THE bag</label>
+            </div>
+          </div>
+        </div>
+        
+
+
+<div class="rightPart lightBg right">
+          <a href="#" class="grey">
+            for her >
+          </a>
+        </div>
+      </div><!-- filterMenu -->
+    </div><!-- #leather-animation -->
+    <!-- End animation -->
+  </div>
+
+  <script>
+  // $(function() {
+  //   var araObj = new Array( 0, 33, 66, 99);
+
+  //   $(".slider").slider({
+  //     min: 1,
+  //     max: araObj.length,
+  //     value: 0,
+  //   });
+  // });
+
+$(function () {
+  $(".slider").each(function () {
+    var begin = $(this).data("begin"),
+    end = $(this).data("end");
+
+    $(this).slider({
+      range: "min",
+      min: begin,
+      max: end,
+      animate: true,
+      slide: function (event, ui) {
+                //update text box quantity
+                var slideramount = ("#" + $(this).attr("id"));
+                $(slideramount).val(ui.value);
+              }
+            })
+
+        //initialise text box quantity
+        var slideramount = ("#" + $(this).attr("id"));
+        $(slideramount).val($(this).slider("value"));
+      })
+
+  
+
+    //When radio buttons are changed, update slider 
+    $('[name="[filter1]"]').change(function () {
+      var value = this.value;
+      $('#filter1').slider("value", value);
+    });
+    $('[name="[filter2]"]').change(function () {
+      var value = this.value;
+      $('#filter2').slider("value", value);
+    });
+    $('[name="[filter3]"]').change(function () {
+      var value = this.value;
+      $('#filter3').slider("value", value);
+    });
+    $('[name="[filter4]"]').change(function () {
+      var value = this.value;
+      $('#filter4').slider("value", value);
+    });
+
+
+    //When slider is changed, update radio buttons 
+    $('#filter1').on('slidechange', function () {
+      $('[name="[filter1]"][value="' + $(this).slider('value') + '"]').prop("checked", true);
+    });
+  });
+
+ // //When radio buttons are changed, update slider 
+ //    $('[name="[filter2]"]').change(function () {
+ //      var value = this.value;
+ //      $('#filter2').slider("value", value);
+ //    });
+ //    //When slider is changed, update radio buttons 
+ //    $('#filter2').on('slidechange', function () {
+ //      $('[name="[filter2]"][value="' + $(this).slider('value') + '"]').prop("checked", true);
+ //    });
+ //  });
+
+</script>
+</body>
+</html>
+
